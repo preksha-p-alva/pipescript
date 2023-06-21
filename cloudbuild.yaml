@@ -1,6 +1,6 @@
 steps :
         options:
-          logging: CLOUD_LOGGING_ONLY
+        logging: CLOUD_LOGGING_ONLY
         - name: 'gcr.io/cloud-builders/gcloud'
           id: create-golden-image
           args: ['beta','compute','create','new-image-0','--source-disk','mig-windows-poc','--source-disk-zone','asia-south1-c','--project','presales-infra-mod','--force']
