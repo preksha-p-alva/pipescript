@@ -68,7 +68,7 @@ pipeline {
                 - rolling-action
                 - start-update
                 - cicd-mig
-                - --version=template=mig-windows-poc
+                - --version=template=new-instance-template
                 - --type=proactive
                 - --zone=asia-south1-c
                 - --project=presales-infra-mod 
