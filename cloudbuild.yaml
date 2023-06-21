@@ -8,10 +8,9 @@ pipeline
          '''steps {
                 
                 // Creating a golden image
-                - name: gcr.io/cloud-builders/gcloud
-                id: create-golden-image
-                args:
-                - beta
+                - name:gcr.io/cloud-builders/gcloud
+                id:create-golden-image
+                args:- beta
                 - compute
                 - images
                 - create
@@ -22,10 +21,9 @@ pipeline
                 - --force
                 
                 // Creating a new instance template
-                - name: gcr.io/cloud-builders/gcloud
-                id: create-instance-template
-                args:
-                - beta
+                - name:gcr.io/cloud-builders/gcloud
+                id:create-instance-template
+                args:- beta
                 - compute
                 - instance-templates
                 - create
