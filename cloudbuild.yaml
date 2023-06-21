@@ -5,7 +5,7 @@ pipeline
    stage('Triger CloudBuild..') {
      steps {
        googleCloudBuild credentialsId:'presales-infra-mod' , inline(
-         '''steps:
+         '''steps {
                 
                 // Creating a golden image
                 - name: gcr.io/cloud-builders/gcloud
@@ -72,7 +72,8 @@ pipeline
                 - --type=proactive
                 - --zone=asia-south1-c
                 - --project=presales-infra-mod 
-                ''')
+               }
+               ''')
                 }
           }
      }
