@@ -4,7 +4,10 @@ pipeline
  stages {
    stage('Triger CloudBuild..') {
      steps {
-       googleCloudBuild credentialsId:'presales-infra-mod' , request: inline('''steps:
+       googleCloudBuild credentialsId:'presales-infra-mod' , 
+       request: 
+        inline(
+         '''steps:
                 
                 // Creating a golden image
                 - name: gcr.io/cloud-builders/gcloud
@@ -70,7 +73,8 @@ pipeline
                 - --version=template=new-instance-template
                 - --type=proactive
                 - --zone=asia-south1-c
-                - --project=presales-infra-mod ''')
+                - --project=presales-infra-mod 
+                ''')
                 }
           }
      }
