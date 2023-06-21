@@ -1,7 +1,7 @@
             # Creating a golden image
             - name:gcr.io/cloud-builders/gcloud
             id:create-golden-image
-            args:['beta','compute','create','new-image-0','--source-disk=mig-windows-poc','--source-disk-zone=asia-south1-c','--project=presales-infra-mod','--force']
+            args:['beta','compute','create','new-image-0','--source-disk','mig-windows-poc','--source-disk-zone','asia-south1-c','--project','presales-infra-mod','--force'];
             
             # Creating a new instance template
             - name:gcr.io/cloud-builders/gcloud
