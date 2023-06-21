@@ -10,13 +10,14 @@ pipeline {
             steps {
                 request:inline(''' 
                 steps {
-                    // Creating a golden image
-                    - name:gcr.io/cloud-builders/gcloud
-                    id:create-golden-image
-                    args:- beta
-                         - compute
-                         - images
-                         - create
+                
+                // Creating a golden image
+                - name:gcr.io/cloud-builders/gcloud
+                id:create-golden-image
+                args:- beta
+                - compute
+                - images
+                - create
                 - new-image-0
                 - --source-disk=mig-windows-poc
                 - --source-disk-zone=asia-south1-c
@@ -44,7 +45,7 @@ pipeline {
                 - --boot-disk-device-name=mig-windows-poc
                 - --project=presales-infra-mod
                 
-                //Make sure that our MIG is stable before update
+                // Make sure that our MIG is stable before update
                 - name:gcr.io/cloud-builders/gcloud
                 id:wait-until-stable
                 args:- beta
@@ -57,7 +58,7 @@ pipeline {
                 - --project=presales-infra-mod
                 - --zone=asia-south1-c
                 
-                //Updating the MIG with new instance template
+                // Updating the MIG with new instance template
                 - name:gcr.io/cloud-builders/gcloud
                 id:updating-mig
                 args:- beta
