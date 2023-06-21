@@ -1,4 +1,7 @@
 steps :
+options:
+  logging: CLOUD_LOGGING_ONLY
+  
     # Creating a golden image
     - name: 'gcr.io/cloud-builders/gcloud'
       id: create-golden-image
