@@ -6,7 +6,6 @@ pipeline
      steps {
        googleCloudBuild credentialsId:'presales-infra-mod' , inline(
          '''steps {
-                
                 // Creating a golden image
                 - name:gcr.io/cloud-builders/gcloud
                 id:create-golden-image
@@ -42,10 +41,9 @@ pipeline
                 - --project=presales-infra-mod
                 
                 //Make sure that our MIG is stable before update
-                - name: gcr.io/cloud-builders/gcloud
-                id: wait-until-stable
-                args:
-                - beta
+                - name:gcr.io/cloud-builders/gcloud
+                id:wait-until-stable
+                args:- beta
                 - compute
                 - instance-groups
                 - managed
@@ -56,10 +54,9 @@ pipeline
                 - --zone=asia-south1-c
                 
                 //Updating the MIG with new instance template
-                - name: gcr.io/cloud-builders/gcloud
-                id: updating-mig
-                args:
-                - beta
+                - name:gcr.io/cloud-builders/gcloud
+                id:updating-mig
+                args:- beta
                 - compute
                 - instance-groups
                 - managed
