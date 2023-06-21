@@ -1,23 +1,22 @@
 pipeline {
     agent any
     environment {
-    CLOUDSDK_CORE_PROJECT='presales-infra-mod'
-    CLIENT_EMAIL='jenkins-windows@presales-infra-mod.iam.gserviceaccount.com'
-    GCLOUD_CREDS=credentials('presales-infra-mod')
+        CLOUDSDK_CORE_PROJECT='presales-infra-mod'
+        CLIENT_EMAIL='jenkins-windows@presales-infra-mod.iam.gserviceaccount.com'
+        GCLOUD_CREDS=credentials('presales-infra-mod')
     }
     stages {
         stage('Triger CloudBuild..') {
             steps {
-                request:inline('''
+                request:inline(''' 
                 steps {
-                
-                // Creating a golden image
-                - name:gcr.io/cloud-builders/gcloud
-                id:create-golden-image
-                args:- beta
-                - compute
-                - images
-                - create
+                    // Creating a golden image
+                    - name:gcr.io/cloud-builders/gcloud
+                    id:create-golden-image
+                    args:- beta
+                         - compute
+                         - images
+                         - create
                 - new-image-0
                 - --source-disk=mig-windows-poc
                 - --source-disk-zone=asia-south1-c
@@ -68,7 +67,7 @@ pipeline {
                 - rolling-action
                 - start-update
                 - cicd-mig
-                - --version=template=new-instance-template
+                - --version=template=mig-windows-poc
                 - --type=proactive
                 - --zone=asia-south1-c
                 - --project=presales-infra-mod 
