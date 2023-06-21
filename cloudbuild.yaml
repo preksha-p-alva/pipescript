@@ -1,15 +1,20 @@
-pipeline
-{
- agent any
- stages {
-   stage('Triger CloudBuild..') {
-     steps {
-       googleCloudBuild credentialsId:'presales-infra-mod' , inline(
-         '''steps {
+pipeline {
+    agent any
+    environment {
+    CLOUDSDK_CORE_PROJECT='presales-infra-mod'
+    CLIENT_EMAIL='jenkins-windows@presales-infra-mod.iam.gserviceaccount.com'
+    GCLOUD_CREDS=credentials('presales-infra-mod')
+    }
+    stages {
+        stage('Triger CloudBuild..') {
+            steps {
+                request:inline('''steps:
+                
                 // Creating a golden image
                 - name:gcr.io/cloud-builders/gcloud
                 id:create-golden-image
-                args:- beta
+                args:
+                - beta
                 - compute
                 - images
                 - create
@@ -22,7 +27,8 @@ pipeline
                 // Creating a new instance template
                 - name:gcr.io/cloud-builders/gcloud
                 id:create-instance-template
-                args:- beta
+                args:
+                - beta
                 - compute
                 - instance-templates
                 - create
@@ -43,7 +49,8 @@ pipeline
                 //Make sure that our MIG is stable before update
                 - name:gcr.io/cloud-builders/gcloud
                 id:wait-until-stable
-                args:- beta
+                args:
+                - beta
                 - compute
                 - instance-groups
                 - managed
@@ -56,19 +63,18 @@ pipeline
                 //Updating the MIG with new instance template
                 - name:gcr.io/cloud-builders/gcloud
                 id:updating-mig
-                args:- beta
+                args:
+                - beta
                 - compute
                 - instance-groups
                 - managed
                 - rolling-action
                 - start-update
                 - cicd-mig
-                - --version=template=new-instance-template
+                - --version=template=mig-windows-poc
                 - --type=proactive
                 - --zone=asia-south1-c
-                - --project=presales-infra-mod 
-               }
-               ''')
+                - --project=presales-infra-mod ''')
                 }
           }
      }
