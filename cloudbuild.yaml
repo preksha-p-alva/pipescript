@@ -14,8 +14,7 @@ pipeline {
                 // Creating a golden image
                 - name:gcr.io/cloud-builders/gcloud
                 id:create-golden-image
-                args:
-                - beta
+                args:- beta
                 - compute
                 - images
                 - create
@@ -28,8 +27,7 @@ pipeline {
                 // Creating a new instance template
                 - name:gcr.io/cloud-builders/gcloud
                 id:create-instance-template
-                args:
-                - beta
+                args:- beta
                 - compute
                 - instance-templates
                 - create
@@ -50,8 +48,7 @@ pipeline {
                 //Make sure that our MIG is stable before update
                 - name:gcr.io/cloud-builders/gcloud
                 id:wait-until-stable
-                args:
-                - beta
+                args:- beta
                 - compute
                 - instance-groups
                 - managed
@@ -64,8 +61,7 @@ pipeline {
                 //Updating the MIG with new instance template
                 - name:gcr.io/cloud-builders/gcloud
                 id:updating-mig
-                args:
-                - beta
+                args:- beta
                 - compute
                 - instance-groups
                 - managed
