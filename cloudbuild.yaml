@@ -8,7 +8,8 @@ pipeline {
     stages {
         stage('Triger CloudBuild..') {
             steps {
-                request: inline('''steps:
+                request: 
+                inline('''steps:
                 
                 // Creating a golden image
                 - name: gcr.io/cloud-builders/gcloud
