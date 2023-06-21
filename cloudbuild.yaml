@@ -16,5 +16,5 @@
 # Updating the MIG with new instance template
 - name: 'gcr.io/cloud-builders/gcloud'
   id: updating-mig
-  args: ['beta','compute','instance-groups','managed','rolling-action','start-update','cicd-mig','--version','template','mig-windows-poc','--type','proactive',''--zone','asia-south1-c','--project','presales-infra-mod']
-           
+  args: ['beta','compute','instance-groups','managed','rolling-action','start-update','cicd-mig','--version','template=mig-windows-poc','--type','proactive','--zone','asia-south1-c''--project','presales-infra-mod']
+  
