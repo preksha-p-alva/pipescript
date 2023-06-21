@@ -10,4 +10,4 @@ steps :
           args:['beta','compute','instance-groups','managed','wait-until','cicd-mig','--stable','--project','presales-infra-mod','--zone','asia-south1-c']
         - name:'gcr.io/cloud-builders/gcloud'
           id:updating-mig
-          args:['beta','compute','instance-groups','managed','rolling-action','start-update','cicd-mig','--version','template=mig-windows-poc','--type','proactive','--zone','asia-south1-c''--project','presales-infra-mod']
+          args:['beta','compute','instance-groups','managed','rolling-action','start-update','cicd-mig','--version','template=mig-windows-poc','--type','proactive','--zone','asia-south1-c','--project','presales-infra-mod']
