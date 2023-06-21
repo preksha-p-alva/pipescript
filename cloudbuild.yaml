@@ -16,4 +16,4 @@ steps :
           id: updating-mig
           args: ['beta','compute','instance-groups','managed','rolling-action','start-update','cicd-mig','--version=template=mig-windows-poc','--type=proactive','--zone=asia-south1-c','--project=presales-infra-mod']
 options:
-        logging: GCS_ONLY
+        logging: None
